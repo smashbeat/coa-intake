@@ -1,0 +1,88 @@
+{
+ "material": "Ferrous Bisglycinate Chelate",
+ "received": "2026-10-20",
+ "tests": [
+  {
+   "names": [
+    "Assay (on dried basis)",
+    "Assay",
+    "Assay (HPLC)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "98.0",
+    "max": "101.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Salmonella spp. (25 g)",
+    "Salmonella (25 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "pH (1% solution)",
+    "pH"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "5.5",
+    "max": "7.5"
+   },
+   "unit": null
+  }
+ ]
+}

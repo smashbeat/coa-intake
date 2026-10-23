@@ -1,0 +1,124 @@
+{
+ "material": "Calcium Carbonate (Precipitated)",
+ "received": "2026-10-13",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Assay (on dried basis)",
+    "Assay",
+    "Assay (HPLC)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "98.0",
+    "max": "101.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Arsenic (As)",
+    "Arsenic",
+    "As"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total aerobic microbial count",
+    "TAMC",
+    "Total plate count"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1000"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Bulk density",
+    "Bulk density (untapped)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "0.45",
+    "max": "0.75"
+   },
+   "unit": "g/mL"
+  },
+  {
+   "names": [
+    "pH (1% solution)",
+    "pH"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "5.5",
+    "max": "7.5"
+   },
+   "unit": null
+  }
+ ]
+}

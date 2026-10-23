@@ -1,0 +1,1 @@
+a71c91d4a160ebc9cc4b575b210b7eb2c8afad47  git tree of tasks/coa-intake as submitted: the task the oracle, nop, static checks and final rubric rounds ran on (git rev-parse HEAD:tasks/coa-intake). The agent trials ran on the same tree before five non-functional changes listed in docs/commands.md; results/frozen-tree.sha256 lists that tree.

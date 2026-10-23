@@ -1,0 +1,122 @@
+{
+ "material": "Ferrous Bisglycinate Chelate",
+ "received": "2026-10-11",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Lead (Pb)",
+    "Lead",
+    "Pb"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Arsenic (As)",
+    "Arsenic",
+    "As"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total aerobic microbial count",
+    "TAMC",
+    "Total plate count"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1000"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Bulk density",
+    "Bulk density (untapped)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "0.45",
+    "max": "0.75"
+   },
+   "unit": "g/mL"
+  },
+  {
+   "names": [
+    "pH (1% solution)",
+    "pH"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "5.5",
+    "max": "7.5"
+   },
+   "unit": null
+  }
+ ]
+}

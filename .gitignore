@@ -1,0 +1,4 @@
+tools/generator/out*/
+tools/generator/out-gen*.log
+.DS_Store
+__pycache__/

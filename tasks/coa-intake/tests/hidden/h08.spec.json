@@ -1,0 +1,111 @@
+{
+ "material": "Calcium Carbonate (Precipitated)",
+ "received": "2026-10-13",
+ "tests": [
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Lead (Pb)",
+    "Lead",
+    "Pb"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Arsenic (As)",
+    "Arsenic",
+    "As"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Particle size (through 80 mesh)",
+    "Mesh (80)"
+   ],
+   "limit": {
+    "type": "min",
+    "min": "95.0"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "pH (1% solution)",
+    "pH"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "5.5",
+    "max": "7.5"
+   },
+   "unit": null
+  }
+ ]
+}

@@ -1,0 +1,86 @@
+{
+ "material": "Ferrous Bisglycinate Chelate",
+ "received": "2026-10-14",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Lead (Pb)",
+    "Lead",
+    "Pb"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Particle size (through 80 mesh)",
+    "Mesh (80)"
+   ],
+   "limit": {
+    "type": "min",
+    "min": "95.0"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Bulk density",
+    "Bulk density (untapped)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "0.45",
+    "max": "0.75"
+   },
+   "unit": "g/mL"
+  }
+ ]
+}

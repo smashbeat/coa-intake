@@ -1,0 +1,311 @@
+{
+    "reportFormat": "CTRF",
+    "specVersion": "0.0.0",
+    "timestamp": "2026-10-23T01:49:04.770742+00:00",
+    "generatedBy": "pytest",
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "9.1.1"
+        },
+        "summary": {
+            "tests": 30,
+            "passed": 26,
+            "failed": 4,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1792720144734,
+            "stop": 1792720144769
+        },
+        "environment": {
+            "buildName": "Pytest JSON CTRF Report",
+            "buildNumber": "000",
+            "buildUrl": "https://ctrf.io"
+        },
+        "tests": [
+            {
+                "name": "test_outputs.py::test_h01",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144743,
+                "stop": 1792720144744,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h02",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144744,
+                "stop": 1792720144745,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h03",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144745,
+                "stop": 1792720144745,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h04",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144746,
+                "stop": 1792720144746,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h05",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144746,
+                "stop": 1792720144747,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h06",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144747,
+                "stop": 1792720144747,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h07",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144747,
+                "stop": 1792720144748,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h08",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144748,
+                "stop": 1792720144748,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h09",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144748,
+                "stop": 1792720144749,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h10",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144749,
+                "stop": 1792720144749,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h11",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144749,
+                "stop": 1792720144750,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h12",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 5,
+                "start": 1792720144750,
+                "stop": 1792720144755,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def t():\n        run = OUT_DIR / f\"{doc}.run.json\"\n        assert run.exists(), \"tool was not run\"\n        st = json.loads(run.read_text())\n        assert st.get(\"returncode\") == 0, f\"tool exited {st.get('returncode')} ({st.get('note', '')})\"\n        out = OUT_DIR / f\"{doc}.json\"\n        assert out.exists(), \"OUT.json not written\"\n        diffs = compare.compare_files(out, TEST_DIR / \"truth\" / f\"{doc}.truth.json\")\n>       assert not diffs, \"\\n\".join(diffs[:15])\nE       AssertionError: lot 1 disposition: 'incomplete' != 'accept'\nE         lot 1: 9 result rows, certificate prints 8\nE         lot 1 row 5 test: 'Result' != 'Mercury (Hg)'\nE         lot 1 row 5 result: 'Specification' != '0.014'\nE         lot 1 row 5 unit: None != 'ppm'\nE         lot 1 row 5 specification: None != 'max. 0.1 ppm'\nE         lot 1 row 6 test: 'Mercury (Hg) 0.014' != 'Escherichia coli (10 g)'\nE         lot 1 row 6 result: 'ppm max.' != 'Negative'\nE         lot 1 row 6 specification: '0.1 ppm' != 'Absent'\nE         lot 1 row 7 test: 'Escherichia coli (10 g) Negative' != 'Bulk density'\nE         lot 1 row 7 result: 'Absent' != '0.63'\nE         lot 1 row 7 unit: None != 'g/mL'\nE         lot 1 row 7 specification: None != '0.45 - 0.75 g/mL'\nE       assert not [\"lot 1 disposition: 'incomplete' != 'accept'\", 'lot 1: 9 result rows, certificate prints 8', \"lot 1 row 5 test: 'Resu...pecification' != '0.014'\", \"lot 1 row 5 unit: None != 'ppm'\", \"lot 1 row 5 specification: None != 'max. 0.1 ppm'\", ...]\n\ntest_outputs.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_h13",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144755,
+                "stop": 1792720144755,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h14",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144755,
+                "stop": 1792720144756,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h15",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144756,
+                "stop": 1792720144756,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h16",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144756,
+                "stop": 1792720144757,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h17",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1,
+                "start": 1792720144757,
+                "stop": 1792720144758,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def t():\n        run = OUT_DIR / f\"{doc}.run.json\"\n        assert run.exists(), \"tool was not run\"\n        st = json.loads(run.read_text())\n        assert st.get(\"returncode\") == 0, f\"tool exited {st.get('returncode')} ({st.get('note', '')})\"\n        out = OUT_DIR / f\"{doc}.json\"\n        assert out.exists(), \"OUT.json not written\"\n        diffs = compare.compare_files(out, TEST_DIR / \"truth\" / f\"{doc}.truth.json\")\n>       assert not diffs, \"\\n\".join(diffs[:15])\nE       AssertionError: lot 0 disposition: 'incomplete' != 'accept'\nE         lot 0 row 0 unit: 'me/kg' != 'mg/kg'\nE       assert not [\"lot 0 disposition: 'incomplete' != 'accept'\", \"lot 0 row 0 unit: 'me/kg' != 'mg/kg'\"]\n\ntest_outputs.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_h18",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144758,
+                "stop": 1792720144759,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h19",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144759,
+                "stop": 1792720144759,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h20",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144759,
+                "stop": 1792720144760,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h21",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144760,
+                "stop": 1792720144760,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h22",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144761,
+                "stop": 1792720144761,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h23",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144761,
+                "stop": 1792720144762,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h24",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144762,
+                "stop": 1792720144762,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h25",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144762,
+                "stop": 1792720144763,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h26",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144763,
+                "stop": 1792720144763,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h27",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2,
+                "start": 1792720144763,
+                "stop": 1792720144765,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def t():\n        run = OUT_DIR / f\"{doc}.run.json\"\n        assert run.exists(), \"tool was not run\"\n        st = json.loads(run.read_text())\n        assert st.get(\"returncode\") == 0, f\"tool exited {st.get('returncode')} ({st.get('note', '')})\"\n        out = OUT_DIR / f\"{doc}.json\"\n        assert out.exists(), \"OUT.json not written\"\n        diffs = compare.compare_files(out, TEST_DIR / \"truth\" / f\"{doc}.truth.json\")\n>       assert not diffs, \"\\n\".join(diffs[:15])\nE       AssertionError: lot 0 retest_date: None != '2027-10-31'\nE       assert not [\"lot 0 retest_date: None != '2027-10-31'\"]\n\ntest_outputs.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_outputs.py::test_h28",
+                "status": "passed",
+                "duration": 0,
+                "start": 1792720144765,
+                "stop": 1792720144765,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h29",
+                "status": "passed",
+                "duration": 1,
+                "start": 1792720144765,
+                "stop": 1792720144766,
+                "retries": 0,
+                "file_path": "test_outputs.py"
+            },
+            {
+                "name": "test_outputs.py::test_h30",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1,
+                "start": 1792720144766,
+                "stop": 1792720144767,
+                "retries": 0,
+                "file_path": "test_outputs.py",
+                "trace": "def t():\n        run = OUT_DIR / f\"{doc}.run.json\"\n        assert run.exists(), \"tool was not run\"\n        st = json.loads(run.read_text())\n        assert st.get(\"returncode\") == 0, f\"tool exited {st.get('returncode')} ({st.get('note', '')})\"\n        out = OUT_DIR / f\"{doc}.json\"\n        assert out.exists(), \"OUT.json not written\"\n        diffs = compare.compare_files(out, TEST_DIR / \"truth\" / f\"{doc}.truth.json\")\n>       assert not diffs, \"\\n\".join(diffs[:15])\nE       AssertionError: 3 lots reported, certificate has 2\nE         lot 0 disposition: 'incomplete' != 'accept'\nE         lot 0: 7 result rows, certificate prints 10\nE         lot 0 row 5 specification: 'NMT 100 cfu/g Y' != 'NMT 100 cfu/g'\nE         lot 1 lot_number: 'P469606 O' != 'P469606'\nE         lot 1 disposition: 'incomplete' != 'accept'\nE         lot 1: 6 result rows, certificate prints 10\nE       assert not ['3 lots reported, certificate has 2', \"lot 0 disposition: 'incomplete' != 'accept'\", 'lot 0: 7 result rows, certifica... != 'NMT 100 cfu/g'\", \"lot 1 lot_number: 'P469606 O' != 'P469606'\", \"lot 1 disposition: 'incomplete' != 'accept'\", ...]\n\ntest_outputs.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

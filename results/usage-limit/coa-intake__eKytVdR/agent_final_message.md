@@ -1,0 +1,1 @@
+A layout check exposed one more requirement: method/reference columns need to be ignored, while printed tests with blank results still need rows in the output. I’ve added both and am checking them alongside the seven supplied certificates and the scan variants.

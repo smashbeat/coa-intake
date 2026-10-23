@@ -1,0 +1,151 @@
+{
+  "checks": {
+    "verifiable": {
+      "explanation": "The verifier runs the agent's intake.py on 30 hidden certificates against a fixed, pre-generated truth set via deterministic JSON comparison (compare.py, with Unicode NFKC/casefold/whitespace-stripping normalization per policy rule 4). No LLM-as-judge, no live services, no network installs at verify time (all deps baked into tests/Dockerfile). Grading is a pure programmatic diff against ground truth.",
+      "outcome": "pass"
+    },
+    "solvable": {
+      "explanation": "solution/intake.py (1225 lines) is a complete, working implementation covering every policy rule (OCR-first reading, text-layer reconciliation, revision handling, unit conversion/rounding, limit matching, disposition). The README states it passes all 30 hidden certificates and 185/185 across five generator seeds, well within the 120s/cert limit. The approach (render pages, OCR, reconcile with text layer, parse tables/revisions, apply decimal arithmetic) is a coherent, implementable strategy for an expert familiar with PDF/OCR tooling.",
+      "outcome": "pass"
+    },
+    "difficult": {
+      "explanation": "The task requires building a robust OCR+parsing pipeline that handles rotated scans, missing/misleading text layers, stamped corrections, multi-page revisions, unit conversion with rounding semantics, and multi-rule disposition logic across four distinct supplier document styles. This is well beyond an average undergraduate exercise and requires genuine document-engineering and careful rule-following expertise.",
+      "outcome": "pass"
+    },
+    "interesting": {
+      "explanation": "Certificate-of-analysis intake against a house specification is a real quality-control workflow at supplement/pharma manufacturers, as described by the author's own professional background. Building reliable automated intake tooling for messy supplier PDFs is a genuine real-world problem with commercial value.",
+      "outcome": "pass"
+    },
+    "outcome_verified": {
+      "explanation": "Grading is purely on intake.py's output JSON compared field-by-field to expected values; no particular library, OCR engine, or coding approach is mandated. The agent is free to implement reading/parsing however it likes as long as the final JSON matches policy semantics.",
+      "outcome": "pass"
+    },
+    "anti_cheat_robustness": {
+      "explanation": "Hidden certificates, their specs, and truth JSON live only in tests/ (verifier image), never shipped to the agent image. The agent only sees 7 sample certificates in environment/samples/. The separate-verifier mode tears down the agent container before verification, and /tests and /logs/verifier are chmod 700 before the agent's tool runs under nobody, so the tool cannot read truth or write the reward.",
+      "outcome": "pass"
+    },
+    "task_security": {
+      "explanation": "All Dockerfiles, scripts, and solution code perform only legitimate PDF/OCR setup, test execution, and comparison logic. No credential exfiltration, no obfuscated code, no network calls beyond pinned package installs at build time, no host-escape attempts.",
+      "outcome": "pass"
+    },
+    "functional_verification": {
+      "explanation": "The verifier executes the submitted intake.py as a subprocess on real PDF inputs and compares its JSON output field-by-field against ground truth (compare.py) \u2014 this is genuine output/behavior checking, not string/keyword scanning of source code.",
+      "outcome": "pass"
+    },
+    "deterministic_reproducible": {
+      "explanation": "All pip packages are version-pinned identically in both Dockerfiles; apt packages are unpinned per convention. Tesseract OCR and the parsing logic are deterministic given fixed input PDFs; no live external services are used. Given the reference solution's claimed 185/185 pass rate across generator seeds, the verifier should reproduce consistently.",
+      "outcome": "pass"
+    },
+    "essential_difficulty": {
+      "explanation": "Failures stem from genuine reading/parsing/reasoning challenges (OCR on unusual fonts, stamp detection, revision resolution, unit conversion), not from arbitrary output formatting \u2014 the output schema (policy rule 9) is simple and explicit, and string comparison is whitespace/case-insensitive, minimizing clerical failure modes.",
+      "outcome": "pass"
+    },
+    "test_instruction_alignment": {
+      "explanation": "instruction.md points to policy.md as the normative spec; every output field and disposition rule tested in compare.py/test_outputs.py traces directly to policy.md rules 3-9. No extraneous requirements are introduced in tests, and all policy requirements (identity fields, result rows, disposition) are covered by the comparison logic.",
+      "outcome": "pass"
+    },
+    "novel": {
+      "explanation": "This is a custom synthetic-document-generation task with bespoke supplier styles, policy rules, and edge cases (stamps, revisions, continuation pages, OCR misreads) that cannot be solved by recalling a known textbook algorithm or memorized solution.",
+      "outcome": "pass"
+    },
+    "agentic": {
+      "explanation": "Solving this requires iterative exploration of sample PDFs/specs, writing and debugging an OCR pipeline, testing against samples, and refining parsing logic across many edge cases \u2014 this cannot be done in a single zero-shot generation and requires sustained environment interaction.",
+      "outcome": "pass"
+    },
+    "reviewable": {
+      "explanation": "Expected outputs are derived from a generator (per README) rather than hardcoded, and sample certificates with expected.json let a reviewer inspect the PDF, spec, and expected output side by side to sanity-check rule application without deep OCR expertise.",
+      "outcome": "pass"
+    },
+    "instruction_concision": {
+      "explanation": "instruction.md is a short, human-written paragraph using absolute paths (/app/intake/intake.py, /app/policy.md, /app/samples/) and describes what to achieve (read certificates, apply policy, write JSON) without prescribing how to implement the OCR/parsing pipeline.",
+      "outcome": "pass"
+    },
+    "effective_instruction_length": {
+      "explanation": "instruction.md itself is very short (~4 sentences); the referenced policy.md (9 concise numbered rules, ~700 words) is necessary normative content that defines the exact semantics the output must satisfy. No unnecessary repetition or fragmentation is present in either document.",
+      "outcome": "pass"
+    },
+    "solution_quality": {
+      "explanation": "solution/intake.py is a genuine, non-trivial computation (OCR, parsing, decimal-based comparisons) kept as its own file rather than inlined in solve.sh; solve.sh simply installs it, which is appropriate since the deliverable itself is the solution artifact, not a precomputed answer.",
+      "outcome": "pass"
+    },
+    "separate_verifier_configured": {
+      "explanation": "artifacts = [\"/app/intake/\"] is the only input needed by the verifier; tests/Dockerfile bakes all verifier tooling (tesseract, poppler, pinned pip packages, pytest, setpriv/pkill) with no runtime installs in test.sh. Shared pinned package versions between environment/Dockerfile and tests/Dockerfile match exactly, so no drift exists.",
+      "outcome": "pass"
+    },
+    "environment_hygiene": {
+      "explanation": "environment/Dockerfile only COPYs policy.md and samples/ (agent-facing resources), never tests/ or solution/; it does not include pytest or other test-only deps. tests/Dockerfile owns /tests/*, pre-installs pytest/pytest-json-ctrf and util-linux/procps for isolation. Apt installs in both Dockerfiles are unpinned with apt-get update preceding and rm -rf /var/lib/apt/lists/* cleanup following.",
+      "outcome": "pass"
+    },
+    "structured_data_schema": {
+      "explanation": "policy.md rule 9 explicitly enumerates the exact output JSON schema (top-level {\"lots\": [...]}, exact per-lot keys, exact per-result-row keys), making the expected structure normative rather than example-only.",
+      "outcome": "pass"
+    },
+    "typos": {
+      "explanation": "No typos were found in file paths, command invocations (python3 /app/intake/intake.py IN.pdf SPEC.json OUT.json), variable names, or Dockerfile instructions across the reviewed files.",
+      "outcome": "pass"
+    },
+    "difficulty_explanation_quality": {
+      "explanation": "README's Difficulty explanation concretely describes both reading challenges (misleading text layers, stamps, scrambled text, font variety) and policy-application challenges (revisions, unit conversion, LOQ handling) for a non-expert reader, notes the data is synthetic but modeled on real cases, and identifies the real-world role (QC desk / contract manufacturer) that would perform this work.",
+      "outcome": "pass"
+    },
+    "solution_explanation_quality": {
+      "explanation": "README's Solution explanation accurately summarizes the actual approach in solution/intake.py (render-then-OCR reading reconciled with text layer, line-based parsing with revision resolution, decimal disposition logic), consistent with the code reviewed, and reports concrete verification numbers (185/185 across seeds, 18s worst case) supporting feasibility.",
+      "outcome": "pass"
+    },
+    "verification_explanation_quality": {
+      "explanation": "README's Verification explanation accurately describes the isolation setup (nobody execution, 700-permission /tests and /logs/verifier, pkill cleanup), the per-certificate pass criteria, and the NFKC/casefold/whitespace-insensitive string comparison, all matching test.sh/compare.py exactly. No inequality-based tolerances are used that would require separate calibration justification.",
+      "outcome": "pass"
+    },
+    "category_and_tags": {
+      "explanation": "category \"Operations\" / subcategory \"Quality\" fits a quality-control intake/disposition workflow rather than being a generic software task. Tags (pdf, ocr, document-extraction, quality-control, certificate-of-analysis, dietary-supplements) are specific and directly descriptive of the task's skills and domain.",
+      "outcome": "pass"
+    },
+    "task_name": {
+      "explanation": "The task identifier \"coa-intake\" (from task.toml's task.name) is concise, descriptive, kebab-case, and within the 3-word limit, clearly conveying the certificate-of-analysis intake theme.",
+      "outcome": "pass"
+    },
+    "resource_configuration": {
+      "explanation": "Verifier timeout (3600s) comfortably covers 30 certificates at up to 120s each plus pytest overhead; agent timeout (28800s/8h) is generous for a genuinely hard, multi-day-caliber engineering task; environment resources (2 CPU, 4GB RAM, 10GB storage) are modest and appropriate for OCR/PDF processing rather than being inflated for artificial difficulty.",
+      "outcome": "pass"
+    },
+    "task_readme": {
+      "explanation": "README.md contains all required sections (Task Metadata, Difficulty explanation, Solution explanation, Verification explanation, Relevant experience) with accurate, non-redundant content beyond the instruction/solution files themselves.",
+      "outcome": "pass"
+    },
+    "expert_time_estimate": {
+      "explanation": "expert_time_estimate_hours = 6.0 is non-zero and plausible for a domain expert with prior experience building exactly this kind of OCR/intake pipeline (as the author claims to have), consistent with the agent timeout of 8 hours being somewhat larger to allow for exploration/debugging.",
+      "outcome": "pass"
+    },
+    "task_toml_schema": {
+      "explanation": "task.toml uses only recognized fields: [task] name/description/authors, [metadata] with standard fields, [verifier]/[verifier.environment], [agent], [environment], and root-level artifacts \u2014 no invented fields were found.",
+      "outcome": "pass"
+    },
+    "no_extraneous_files": {
+      "explanation": "Every file traces to a purpose: Dockerfiles reference policy.md/samples (environment) and tests content (tests/Dockerfile); solve.sh installs solution/intake.py; tests/hidden and tests/truth are consumed by test_outputs.py/compare.py. No stray editor/OS cruft or duplicate files were found.",
+      "outcome": "pass"
+    },
+    "artifact_efficiency": {
+      "explanation": "The sole artifact is /app/intake/ containing a single small Python file (the agent's actual deliverable) \u2014 minimal footprint with nothing build-time-fixed or redundant being shipped as an artifact.",
+      "outcome": "pass"
+    },
+    "verifier_execution_isolation": {
+      "explanation": "test.sh chmods /logs/verifier and /tests to 700 before any agent code runs, executes the submitted intake.py via setpriv as nobody with a timeout and output redirected to files (not pipes), kills leftover nobody processes after each run, and only root-run pytest (importing only trusted compare.py, never agent code) decides the reward from exit codes written during the unprivileged runs.",
+      "outcome": "pass"
+    },
+    "ctrf_reporting": {
+      "explanation": "test.sh invokes pytest with --ctrf /logs/verifier/ctrf.json against test_outputs.py, producing per-certificate CTRF results alongside the binary reward.",
+      "outcome": "pass"
+    },
+    "do_not_modify_enforced": {
+      "explanation": "instruction.md contains no do-not-modify/preserve constraint on any concrete artifact; the agent is simply asked to build a new tool at /app/intake/intake.py.",
+      "outcome": "not_applicable"
+    },
+    "binary_reward": {
+      "explanation": "test.sh writes reward.txt as exactly 1 (pytest exit 0 = all certificates passed) or 0 (pytest exit 1 = some failed); any other pytest exit code is treated as a hard verifier error (exit 1, no reward written) rather than a fractional score. No continuous scoring path exists.",
+      "outcome": "pass"
+    }
+  },
+  "cost_usd": 0.436795,
+  "task_name": "coa-intake",
+  "error": null
+}

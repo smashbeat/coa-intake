@@ -1,0 +1,151 @@
+{
+  "checks": {
+    "verifiable": {
+      "explanation": "A programmatic, deterministic comparison of each output JSON against generator truth (NFKC + casefold + whitespace stripping on strings, exact match on disposition). No LLM judge. All verifier tooling is baked into tests/Dockerfile and test.sh installs nothing.",
+      "outcome": "pass"
+    },
+    "solvable": {
+      "explanation": "A full reference tool (solution/intake.py, about 1200 lines, using OCR plus a text-layer cross-check) is provided. The README says it gets all 30 hidden certificates right, plus 185/185 across five generator seeds, with the slowest certificate at 18 s. I couldn't execute it here because the dependencies aren't installed. An expert who knows the approach could plausibly build it in a working day.",
+      "outcome": "pass"
+    },
+    "difficult": {
+      "explanation": "The tool has to read PDFs robustly across scans with and without OCR layers, outlined text, form fields whose stored value differs from the printed appearance, hidden/white text, stamps and rotated pages, and then apply nontrivial policy rules (revisions, continuation pages, unit conversion with half-up rounding, LOQ handling). Every field must be exact on unseen documents, which is well beyond an undergraduate exercise.",
+      "outcome": "pass"
+    },
+    "interesting": {
+      "explanation": "Checking incoming certificates of analysis is a real, paid QC job at supplement and pharma manufacturers, and automating it has clear value.",
+      "outcome": "pass"
+    },
+    "outcome_verified": {
+      "explanation": "Only the output JSON files are graded. The agent can use any libraries and any approach. The policy defines what the values are, not how to obtain them.",
+      "outcome": "pass"
+    },
+    "anti_cheat_robustness": {
+      "explanation": "The hidden PDFs and truth exist only in the verifier image, and /tests is root-only. The tool runs as nobody and cannot read the truth. The samples are distinct from the hidden set, so hardcoding the sample answers gains nothing.",
+      "outcome": "pass"
+    },
+    "task_security": {
+      "explanation": "All scripts are straightforward setup, install and compare code. No network exfiltration, obfuscation, prompt injection or destructive operations.",
+      "outcome": "pass"
+    },
+    "functional_verification": {
+      "explanation": "The verifier executes the agent's tool on each hidden PDF and compares the JSON it produces. Source code is never scanned.",
+      "outcome": "pass"
+    },
+    "deterministic_reproducible": {
+      "explanation": "The Python packages and the base image digest are pinned, apt packages are left unpinned as required, and no live services are used. Tesseract-based processing is deterministic, and the 120 s per-document limit leaves large headroom over the reported 18 s worst case.",
+      "outcome": "pass"
+    },
+    "essential_difficulty": {
+      "explanation": "Strings are compared with whitespace and case removed, so failures come from misreading the printed page or misapplying the policy rules, which is the core challenge, not from formatting minutiae.",
+      "outcome": "pass"
+    },
+    "test_instruction_alignment": {
+      "explanation": "The instruction points to policy.md, which defines every key, the comparison normalization, and the disposition rules. The compare.py checks (lot order and count, exact key sets, field values, row order, disposition) all trace back to rules 3\u20139. Tests are concise.",
+      "outcome": "pass"
+    },
+    "novel": {
+      "explanation": "This is a custom synthetic corpus with bespoke adversarial PDF production routes and a custom policy. No memorized solution exists.",
+      "outcome": "pass"
+    },
+    "agentic": {
+      "explanation": "The agent must inspect sample PDFs, discover how their text layers diverge from the print, experiment with OCR and rendering, and iterate against the samples. It cannot be done in one shot.",
+      "outcome": "pass"
+    },
+    "reviewable": {
+      "explanation": "The README explains the domain, the policy is explicit, and the truth files can be checked by viewing the PDFs. An independent reference reader agrees with the generator truth. The generator itself is not included, but the cross-check between the reference and the generator gives reasonable confidence.",
+      "outcome": "pass"
+    },
+    "instruction_concision": {
+      "explanation": "The instruction is short and human-written, uses absolute paths in backticks, states the goal and the CLI contract, and defers the rules to policy.md without hinting at an approach or listing libraries.",
+      "outcome": "pass"
+    },
+    "effective_instruction_length": {
+      "explanation": "The agent-facing instruction (about 180 words) plus the referenced context policy.md (about 900 words) is dense, normative content that the exact-match grading genuinely requires. No meaningful repetition.",
+      "outcome": "pass"
+    },
+    "solution_quality": {
+      "explanation": "solve.sh installs a separate, genuine intake.py that computes the outputs via rendering, OCR and parsing. There are no hardcoded answers and no large heredocs.",
+      "outcome": "pass"
+    },
+    "separate_verifier_configured": {
+      "explanation": "The only agent input is the /app/intake/ artifact. The hidden data is baked in via COPY. tests/Dockerfile mirrors the agent image's apt and pip software with the same pins (plus pytest, setpriv and procps), so the tool runs in an equivalent environment. No runtime installs.",
+      "outcome": "pass"
+    },
+    "environment_hygiene": {
+      "explanation": "The agent image copies only policy.md and samples, with no tests, solution or pytest. The verifier image owns /tests and the test deps. apt installs use update and clean up the lists, and apt packages are unpinned.",
+      "outcome": "pass"
+    },
+    "structured_data_schema": {
+      "explanation": "Policy rules 3, 4 and 9 normatively define the output object, the exact lot and row keys, null handling, ISO dates and the disposition values.",
+      "outcome": "pass"
+    },
+    "typos": {
+      "explanation": "No typos found in paths, filenames, commands or identifiers across the instruction, Dockerfiles, test.sh, the tests or the solution.",
+      "outcome": "pass"
+    },
+    "difficulty_explanation_quality": {
+      "explanation": "The section explains both halves of the difficulty (faithful reading despite misleading text layers, and policy application) with concrete examples. It states that the data is synthetic but modelled on real routes, and the overview and relevant-experience text identify the receiving-desk QC role.",
+      "outcome": "pass"
+    },
+    "solution_explanation_quality": {
+      "explanation": "It describes the image-first OCR strategy with a text-layer cross-check, the voting re-reads, the column-based parsing, revision application and decimal rounding. This matches intake.py's docstring and structure.",
+      "outcome": "pass"
+    },
+    "verification_explanation_quality": {
+      "explanation": "It accurately describes the separate container, unprivileged execution with the 120 s limit and pkill, per-certificate tests, the exact-match comparison after normalization, and the all-30-must-pass reward. No tolerances need justifying.",
+      "outcome": "pass"
+    },
+    "category_and_tags": {
+      "explanation": "Operations/Quality fits a QC intake workflow, and the tags (pdf, ocr, document-extraction, certificate-of-analysis, etc.) are specific and relevant.",
+      "outcome": "pass"
+    },
+    "task_name": {
+      "explanation": "'coa-intake' is two words of kebab-case and names the certificate-of-analysis intake task.",
+      "outcome": "pass"
+    },
+    "resource_configuration": {
+      "explanation": "Settings are 2 CPUs, 4 GB, an 8 h agent timeout for a hard task, and a 3600 s verifier timeout covering 30\u00d7120 s worst case. The resources are modest and reasonable for OCR, and the difficulty is intellectual rather than computational.",
+      "outcome": "pass"
+    },
+    "task_readme": {
+      "explanation": "The README has a metadata summary, an overview and all four required sections, with accurate content that matches the files.",
+      "outcome": "pass"
+    },
+    "expert_time_estimate": {
+      "explanation": "The 6 hours estimate is plausible for an expert who knows the approach to build a robust OCR-plus-policy tool, and it is consistent with the 8 h agent timeout.",
+      "outcome": "pass"
+    },
+    "task_toml_schema": {
+      "explanation": "All sections and fields are recognized: root artifacts and schema_version, [task], the expected [metadata] fields, [verifier] with environment_mode and environment, [agent], and [environment].",
+      "outcome": "pass"
+    },
+    "no_extraneous_files": {
+      "explanation": "Every file is referenced: the samples and policy are copied into the agent image, the hidden PDFs, specs and truth are consumed by the tests, and intake.py is used by solve.sh.",
+      "outcome": "pass"
+    },
+    "artifact_efficiency": {
+      "explanation": "The only artifact is /app/intake/, the agent's small deliverable. There are no collect hooks and no baked baseline.",
+      "outcome": "not_applicable"
+    },
+    "verifier_execution_isolation": {
+      "explanation": "/logs/verifier and /tests are chmod 700 before the agent code runs. The tool runs via setpriv as nobody under timeout, with output captured to files and all nobody processes killed after each run. Root's pytest only parses the JSON (compare.py imports no agent code) and root writes the reward from pytest's exit code.",
+      "outcome": "pass"
+    },
+    "ctrf_reporting": {
+      "explanation": "pytest runs with --ctrf /logs/verifier/ctrf.json, one test per hidden certificate.",
+      "outcome": "pass"
+    },
+    "do_not_modify_enforced": {
+      "explanation": "The instruction contains no do-not-modify constraints on concrete artifacts.",
+      "outcome": "not_applicable"
+    },
+    "binary_reward": {
+      "explanation": "reward.txt gets 1 for pytest exit 0 and 0 for exit 1. Any other exit is treated as a verifier error with no reward written.",
+      "outcome": "pass"
+    }
+  },
+  "cost_usd": 0.3681556,
+  "task_name": "coa-intake",
+  "error": null
+}

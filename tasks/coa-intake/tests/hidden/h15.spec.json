@@ -1,0 +1,109 @@
+{
+ "material": "Cholecalciferol 100,000 IU/g",
+ "received": "2026-10-16",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Assay (on dried basis)",
+    "Assay",
+    "Assay (HPLC)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "98.0",
+    "max": "101.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Loss on drying",
+    "LOD"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Arsenic (As)",
+    "Arsenic",
+    "As"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Cadmium (Cd)",
+    "Cadmium",
+    "Cd"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Escherichia coli (10 g)",
+    "E. coli (10 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  }
+ ]
+}

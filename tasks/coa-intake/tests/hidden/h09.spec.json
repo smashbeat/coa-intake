@@ -1,0 +1,88 @@
+{
+ "material": "Cholecalciferol 100,000 IU/g",
+ "received": "2026-10-10",
+ "tests": [
+  {
+   "names": [
+    "Loss on drying",
+    "LOD"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Lead (Pb)",
+    "Lead",
+    "Pb"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Arsenic (As)",
+    "Arsenic",
+    "As"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Bulk density",
+    "Bulk density (untapped)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "0.45",
+    "max": "0.75"
+   },
+   "unit": "g/mL"
+  }
+ ]
+}

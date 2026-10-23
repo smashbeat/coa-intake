@@ -1,0 +1,94 @@
+{
+ "material": "Pyridoxine Hydrochloride USP",
+ "received": "2026-10-15",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Lead (Pb)",
+    "Lead",
+    "Pb"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "1.0"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Escherichia coli (10 g)",
+    "E. coli (10 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Salmonella spp. (25 g)",
+    "Salmonella (25 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Bulk density",
+    "Bulk density (untapped)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "0.45",
+    "max": "0.75"
+   },
+   "unit": "g/mL"
+  },
+  {
+   "names": [
+    "pH (1% solution)",
+    "pH"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "5.5",
+    "max": "7.5"
+   },
+   "unit": null
+  }
+ ]
+}

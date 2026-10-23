@@ -1,0 +1,20 @@
+
+🔎 Checking task quality...
+  4/4 Mean: 1.000 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 0:11:27 0:00:00             Task Quality Checks             
+┏━━━━━━━━━━━━┳━━━━━━┳━━━━━━┳━━━━━┳━━━━━━━━━━┓
+┃ Task       ┃ Pass ┃ Fail ┃ N/A ┃ Cost ($) ┃
+┡━━━━━━━━━━━━╇━━━━━━╇━━━━━━╇━━━━━╇━━━━━━━━━━┩
+│ coa-intake │ 34   │ 0    │ 2   │ 0.3682   │
+├────────────┼──────┼──────┼─────┼──────────┤
+│ coa-intake │ 34   │ 0    │ 2   │ 0.3775   │
+├────────────┼──────┼──────┼─────┼──────────┤
+│ coa-intake │ 34   │ 0    │ 2   │ 0.3767   │
+├────────────┼──────┼──────┼─────┼──────────┤
+│ coa-intake │ 35   │ 0    │ 1   │ 0.2623   │
+└────────────┴──────┴──────┴─────┴──────────┘
+Total agent cost: $1.3846
+
+Report: jobs/coa2-check-final-opus/check_report.json
+Inspect results by running `harbor view jobs`
+In the viewer, open a trial's Artifacts tab to read its check-result.json, and 
+use ← / → to switch between tasks.

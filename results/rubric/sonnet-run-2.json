@@ -1,0 +1,151 @@
+{
+  "checks": {
+    "verifiable": {
+      "explanation": "The verifier runs the agent's tool on 30 hidden certificates as the unprivileged user `nobody` with a 120s per-file timeout, then compares outputs deterministically to pre-baked truth JSON via compare.py (string normalisation per policy rule 4, exact key/value checks). No LLM-as-judge, no runtime network installs in test.sh, and I confirmed the reference solution deterministically passes all 30 hidden tests and all 7 samples.",
+      "outcome": "pass"
+    },
+    "solvable": {
+      "explanation": "I ran solution/intake.py against all 7 samples and all 30 hidden certificates in this review environment; every one produced rc=0 and matched truth via tests/compare.py, with runtimes of 2-18s, well under the 120s limit. A working, passing solution exists.",
+      "outcome": "pass"
+    },
+    "difficult": {
+      "explanation": "The task requires building a robust PDF/OCR pipeline that reconciles a text layer against a rendered image, handles rotated scans, stamps, revision/continuation pages, unit conversion with half-up rounding, and LOQ/ND semantics, verified against 4 distinct supplier layouts. This is well beyond an undergraduate course project and demands real document-engineering and OCR expertise, matching the 6-hour expert estimate.",
+      "outcome": "pass"
+    },
+    "interesting": {
+      "explanation": "Certificate-of-analysis intake against a house specification is a real, everyday task at pharma/supplement manufacturers (the author describes running exactly this function professionally), so automating it has clear real-world utility.",
+      "outcome": "pass"
+    },
+    "outcome_verified": {
+      "explanation": "Grading is purely on the final OUT.json contents compared field-by-field to truth; no process or tool-choice constraints are imposed, and the output schema (while detailed) is the natural, policy-mandated representation of a CoA rather than arbitrary overspecification.",
+      "outcome": "pass"
+    },
+    "anti_cheat_robustness": {
+      "explanation": "Hidden certificates and truth JSON live only in tests/ (verifier-only image); the agent image (environment/Dockerfile) copies only policy.md and the 7 samples. The agent cannot see /tests/ or /solution/ at runtime since the verifier runs in a separate, torn-down-agent-container mode, so sample-memorisation or truth-reading shortcuts are not possible.",
+      "outcome": "pass"
+    },
+    "task_security": {
+      "explanation": "Reviewed environment/Dockerfile, tests/Dockerfile, test.sh, compare.py, test_outputs.py, solve.sh and intake.py: no credential access, no network exfiltration, no obfuscated code, no prompt injection. Sample/hidden PDFs were scanned for /JavaScript, /Launch, /OpenAction and none were found.",
+      "outcome": "pass"
+    },
+    "functional_verification": {
+      "explanation": "compare.py parses and semantically compares the agent's JSON output against truth JSON field-by-field (with a defined normalisation), not string/keyword matching on source code; it actually executes the submitted tool per certificate and checks real output.",
+      "outcome": "pass"
+    },
+    "deterministic_reproducible": {
+      "explanation": "All Python packages are pinned to exact versions in both Dockerfiles and the base image is pinned by sha256 digest; apt packages are left unpinned per guidance since apt only serves current point releases. No live/external services are used at verify time; PDFs and truth are static baked files.",
+      "outcome": "pass"
+    },
+    "essential_difficulty": {
+      "explanation": "Failures stem from genuine reading/reasoning challenges (misread digits, stamp vs. text-layer conflicts, revision precedence, unit conversion) rather than output formatting; the output schema is simple JSON with clearly-defined keys and the comparison normalises whitespace/case, so clerical formatting is not the source of difficulty.",
+      "outcome": "pass"
+    },
+    "test_instruction_alignment": {
+      "explanation": "instruction.md requires intake.py to read a cert+spec and write disposition/values 'exactly as /app/policy.md defines them'; compare.py checks exactly the keys and semantics policy.md's rule 9/3/4/8 define (identity fields, result rows, disposition), with no extra requirements introduced beyond the policy.",
+      "outcome": "pass"
+    },
+    "novel": {
+      "explanation": "This is not a textbook exercise; it combines bespoke OCR/text-layer reconciliation, a custom multi-rule disposition policy, and synthetic multi-supplier document generation that would not appear verbatim in training data.",
+      "outcome": "pass"
+    },
+    "agentic": {
+      "explanation": "Solving requires iterative exploration of sample PDFs/specs, writing and debugging an OCR+parsing pipeline, and multi-step testing against the 7 samples \u2014 this cannot be produced by a single zero-shot generation and needs real file/tool interaction.",
+      "outcome": "pass"
+    },
+    "reviewable": {
+      "explanation": "I rendered sample s01.pdf and hidden h22.pdf (both image/no-text-layer) and visually confirmed their printed content exactly matches the corresponding expected/truth JSON, so a non-specialist reviewer can check correctness directly against the rendered PDF without needing the generator source, applying only the plainly-stated policy.md rules.",
+      "outcome": "pass"
+    },
+    "instruction_concision": {
+      "explanation": "instruction.md is human-written, uses absolute paths (/app/intake/intake.py, /app/policy.md, /app/samples/), describes the goal (what to build, what to read, what to write) without prescribing an implementation approach, and does not enumerate unnecessary tooling.",
+      "outcome": "pass"
+    },
+    "effective_instruction_length": {
+      "explanation": "instruction.md (~176 words) plus the referenced normative policy.md (~794 words) total under 1000 words; policy.md is a dense but non-repetitive 9-rule specification that is necessary to define the exact extraction/disposition semantics, not padding.",
+      "outcome": "pass"
+    },
+    "solution_quality": {
+      "explanation": "solution/intake.py (1225 lines) is a genuine OCR pipeline (rendering, orientation detection, text-layer reconciliation, vote-based re-reading, table parsing, revision handling) kept as its own file rather than inlined in solve.sh; solve.sh itself only installs the already-written file, which is appropriate since the large artifact lives in its own file per the size guidance.",
+      "outcome": "pass"
+    },
+    "separate_verifier_configured": {
+      "explanation": "artifacts=['/app/intake/'] is declared at the root, verifier.environment_mode='separate', tests/Dockerfile COPY . /tests/ and pre-creates /app/intake /logs/verifier, and pinned package versions match byte-for-byte between environment/Dockerfile and tests/Dockerfile. No runtime pip/apt installs occur in test.sh.",
+      "outcome": "pass"
+    },
+    "environment_hygiene": {
+      "explanation": "environment/Dockerfile copies only policy.md and samples/, contains no test-only deps (pytest, ctrf) and no solution code; tests/Dockerfile owns /tests, bakes pytest/pytest-json-ctrf/setpriv/pkill, and apt installs are followed by apt list cleanup in both Dockerfiles with no apt version pins.",
+      "outcome": "pass"
+    },
+    "structured_data_schema": {
+      "explanation": "policy.md rule 9 explicitly and normatively specifies the output JSON schema (exact keys for lots and result rows, null semantics, ordering), not merely illustrated by example.",
+      "outcome": "pass"
+    },
+    "typos": {
+      "explanation": "Reviewed instruction.md, README.md, policy.md, intake.py, test scripts and solve.sh; no typos found in filenames, paths, commands, or identifiers, and cross-checked grep for common typo patterns returned nothing.",
+      "outcome": "pass"
+    },
+    "difficulty_explanation_quality": {
+      "explanation": "README's Difficulty explanation concretely describes both the reading challenge (text-layer vs. print disagreement, OCR misreads, stamps, fonts, layouts) and the policy-application challenge (revisions, unit conversion, LOQ semantics, date-based rejection), states the data is synthetic and realistic, and names the real-world role (QC/receiving desk at a supplement manufacturer) that performs this work.",
+      "outcome": "pass"
+    },
+    "solution_explanation_quality": {
+      "explanation": "README's Solution explanation accurately describes the actual approach in solution/intake.py (render-then-OCR with text-layer reconciliation, column-based table parsing, revision/amendment collation, rule 6-8 decimal arithmetic) and is consistent with the code I reviewed, including citing concrete validation numbers (185/185 across seeds, worst-case 18s).",
+      "outcome": "pass"
+    },
+    "verification_explanation_quality": {
+      "explanation": "README's Verification explanation accurately matches test.sh/test_outputs.py/compare.py: separate container, nobody-privileged execution with a 120s limit, root-only comparison, per-certificate test count, and the exact normalisation rule used (NFKC + casefold + whitespace strip) \u2014 no inequality-based thresholds are used, so no calibration justification is needed.",
+      "outcome": "pass"
+    },
+    "category_and_tags": {
+      "explanation": "category='Operations'/subcategory='Quality' correctly reflects this as a QC/incoming-goods document-intake workflow task rather than a generic software task; tags (pdf, ocr, document-extraction, quality-control, certificate-of-analysis, dietary-supplements) are specific and discoverable.",
+      "outcome": "pass"
+    },
+    "task_name": {
+      "explanation": "The task is named 'coa-intake' (per task.toml's `name` and the README), a concise, descriptive, kebab-case, 2-word slug that clearly conveys the task's subject.",
+      "outcome": "pass"
+    },
+    "resource_configuration": {
+      "explanation": "Verifier timeout of 3600s comfortably covers 30 certificates at up to 120s each plus overhead (observed actual runtime ~2-18s/cert); agent timeout of 8 hours matches the stated 6-hour expert estimate with headroom for TB3-scale difficulty; cpus=2/memory=4096MB/storage=10240MB are reasonable for DPI-400 image rendering and OCR rather than excessive for difficulty's sake.",
+      "outcome": "pass"
+    },
+    "task_readme": {
+      "explanation": "README.md contains all required sections (Difficulty explanation, Solution explanation, Verification explanation, Relevant experience) plus a metadata summary, with no redundant duplication of instruction.md or solution code beyond what's needed for context.",
+      "outcome": "pass"
+    },
+    "expert_time_estimate": {
+      "explanation": "expert_time_estimate_hours=6.0 is non-zero and plausible for the described multi-faceted OCR+policy engineering task, and is consistent between task.toml and the README's stated 'Expert time: 6 hours'.",
+      "outcome": "pass"
+    },
+    "task_toml_schema": {
+      "explanation": "task.toml uses only recognized sections/fields: [task], [metadata] (author_*, category, subcategory, tags, expert_time_estimate_hours), [verifier]/[verifier.environment], [agent], [environment], plus root-level schema_version and artifacts; no invented fields are present.",
+      "outcome": "pass"
+    },
+    "no_extraneous_files": {
+      "explanation": "Every file traces to a purpose: Dockerfiles, policy.md and samples/ referenced by instruction/tool, solution files used by solve.sh, and tests/hidden+tests/truth consumed by test_outputs.py/compare.py. No editor cruft, backups, or unused assets were found (I did clean up a __pycache__ directory my own review commands created under tests/, which was not part of the original task).",
+      "outcome": "pass"
+    },
+    "artifact_efficiency": {
+      "explanation": "The only artifact is '/app/intake/' containing the agent's single deliverable script, a small agent-produced file with no large build-time-fixed content being needlessly transferred.",
+      "outcome": "pass"
+    },
+    "verifier_execution_isolation": {
+      "explanation": "test.sh chmods /logs/verifier and /tests to 700 before running any agent code, executes the submitted intake.py via setpriv as `nobody` with output captured to files (not pipes), kills nobody-owned processes after each run, and only root-run pytest (which does not execute or import agent code per compare.py's own docstring) derives the reward from the unprivileged child's recorded exit code.",
+      "outcome": "pass"
+    },
+    "ctrf_reporting": {
+      "explanation": "test.sh invokes `pytest --ctrf /logs/verifier/ctrf.json /tests/test_outputs.py -rA -q` directly as root (pytest does not execute agent code so no privilege-drop detour is needed), producing one CTRF entry per hidden certificate.",
+      "outcome": "pass"
+    },
+    "do_not_modify_enforced": {
+      "explanation": "instruction.md contains no 'do not modify/preserve/leave unchanged' constraint on any concrete artifact for the agent to violate.",
+      "outcome": "not_applicable"
+    },
+    "binary_reward": {
+      "explanation": "test.sh writes exactly `echo 1` or `echo 0` to /logs/verifier/reward.txt based on pytest's exit status (0 or 1); any other pytest exit status is treated as a verifier infrastructure error (no reward.txt written), so every reachable reward-writing path is strictly binary.",
+      "outcome": "pass"
+    }
+  },
+  "cost_usd": 0.8047014,
+  "task_name": "coa-intake",
+  "error": null
+}

@@ -1,0 +1,117 @@
+{
+ "material": "Ascorbic Acid USP",
+ "received": "2026-10-08",
+ "tests": [
+  {
+   "names": [
+    "Appearance",
+    "Description"
+   ],
+   "limit": {
+    "type": "report"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Identification (IR)",
+    "Identity (FTIR)",
+    "Identification"
+   ],
+   "limit": {
+    "type": "conforms"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Assay (on dried basis)",
+    "Assay",
+    "Assay (HPLC)"
+   ],
+   "limit": {
+    "type": "range",
+    "min": "98.0",
+    "max": "101.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Loss on drying",
+    "LOD"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.5"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Residue on ignition",
+    "Sulfated ash"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.10"
+   },
+   "unit": "%"
+  },
+  {
+   "names": [
+    "Mercury (Hg)",
+    "Mercury",
+    "Hg"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "0.1"
+   },
+   "unit": "ppm"
+  },
+  {
+   "names": [
+    "Total yeast and mold",
+    "TYMC",
+    "Yeasts and moulds"
+   ],
+   "limit": {
+    "type": "max",
+    "max": "100"
+   },
+   "unit": "cfu/g"
+  },
+  {
+   "names": [
+    "Escherichia coli (10 g)",
+    "E. coli (10 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Salmonella spp. (25 g)",
+    "Salmonella (25 g)"
+   ],
+   "limit": {
+    "type": "absent"
+   },
+   "unit": null
+  },
+  {
+   "names": [
+    "Particle size (through 80 mesh)",
+    "Mesh (80)"
+   ],
+   "limit": {
+    "type": "min",
+    "min": "95.0"
+   },
+   "unit": "%"
+  }
+ ]
+}
